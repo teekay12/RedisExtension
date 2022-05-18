@@ -18,7 +18,7 @@ class RedisProvider extends Redis {
     private static object $obj;
 
     private final function __construct(array $options){
-        $this->host = $options['host'] ?? '172.25.0.1';
+        $this->host = $options['host'] ?? $_SERVER['REMOTE_ADDR'];
         $this->port = $options['port'] ?? 6379;
 
         if($options['enable_calling_class']) $this->prefix = $this->get_calling_class();
@@ -40,18 +40,23 @@ class RedisProvider extends Redis {
     }
 
     private function connectToRedis() : object 
-    {
-        if(!empty($this->username) && !empty($this->password)){
-            $this->connect($this->host, $this->port, 
-                            $this->connection_timeout, NULL, 100, 0, 
-                            ['auth' => [$this->username, $this->password]]);
-        }else{
-            $this->connect($this->host, $this->port, $this->connection_timeout, NULL, 100);
+    {   
+        try{
+            if(!empty($this->username) && !empty($this->password)){
+                $this->connect($this->host, $this->port, 
+                                $this->connection_timeout, NULL, 100, 0, 
+                                ['auth' => [$this->username, $this->password]]);
+            }else{
+                $this->connect($this->host, $this->port, $this->connection_timeout, NULL, 100, 0);
+            }
+    
+            if(isset($this->prefix)) $this->setOption(Redis::OPT_PREFIX, $this->prefix.":");
+    
+            return $this;
         }
-
-        if(isset($this->prefix)) $this->setOption(Redis::OPT_PREFIX, $this->prefix.":");
-
-        return $this;
+        catch(\Exception $e){
+            die("<strong>{$e->getMessage()}<br>Hint: Change your redis config host to this {$_SERVER['REMOTE_ADDR']}</strong>");
+        }
     }
 
     private function get_calling_class() : string {

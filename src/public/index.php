@@ -4,7 +4,7 @@ require 'RedisProvider.php';
 use  Teekay12\RedisExtension\RedisProvider;
 
 $options = [
-    'host' => "172.25.0.1",
+    'host' => $_SERVER['REMOTE_ADDR'],
     'port' => 6379,
     'enable_calling_class' => false,
     'connection_timeout' => 1
