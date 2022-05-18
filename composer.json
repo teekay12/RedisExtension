@@ -1,3 +1,21 @@
 {
-  "require": {}
+  "name": "teekay12/redis_extension",
+  "description": "A simple php class that receives phpredis configuration on instantiation and connects automatically",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "kareem Taofik",
+      "email": "kareemtaofik22@gmail.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "autoload": {
+    "psr-4": {
+      "Teekay12\\RedisExtension\\": "src/"
+    }
+  },
+  "require": {
+    "predis/predis": "^1.1"
+  }
 }
