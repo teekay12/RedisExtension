@@ -18,7 +18,7 @@ class RedisProvider extends Redis {
     private static object $obj;
 
     private final function __construct(array $options){
-        $this->host = $options['host'] ?? '127.0.0.1';
+        $this->host = $options['host'] ?? '172.25.0.1';
         $this->port = $options['port'] ?? 6379;
 
         if($options['enable_calling_class']) $this->prefix = $this->get_calling_class();

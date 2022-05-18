@@ -9,7 +9,6 @@
       "email": "kareemtaofik22@gmail.com"
     }
   ],
-  "minimum-stability": "stable",
   "autoload": {
     "psr-4": {
       "Teekay12\\RedisExtension\\": "src/"
