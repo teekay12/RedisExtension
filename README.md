@@ -8,7 +8,7 @@ Step 1
 Run composer require teekay12/redis_extension to install,
 
 Step 2
-Run docker compose up to set up the development environment
+CD into the docker directory to run docker compose up to set up the development environment
 
 Import the class, see example below
 

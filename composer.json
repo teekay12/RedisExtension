@@ -14,7 +14,5 @@
       "Teekay12\\RedisExtension\\": "src/"
     }
   },
-  "require": {
-    "predis/predis": "^1.1"
-  }
+  "require": {}
 }
